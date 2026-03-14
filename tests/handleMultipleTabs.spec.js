@@ -1,6 +1,6 @@
 const {test, expect} = require('@playwright/test');
 
-test("Working with multiple tabs", async function ({browser}) {
+test("Working with multiple tabs", async function ({browser, browserName}) {
     const context = await browser.newContext();
     const page = await context.newPage();
     await page.goto("https://freelance-learn-automation.vercel.app/login");
@@ -11,5 +11,7 @@ test("Working with multiple tabs", async function ({browser}) {
             page.locator("//div[@id='login_container']//a[contains(@href, 'facebook')]").click()
         ]
     )
+    console.log('Browser name:', browserName);
+    console.log('Browser version:', browser.version());
     await expect(newPage.locator("(//span[normalize-space()='See more on Facebook'])[1]")).toBeVisible();
 })
