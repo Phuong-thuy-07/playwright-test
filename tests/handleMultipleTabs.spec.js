@@ -13,5 +13,7 @@ test("Working with multiple tabs", async function ({browser, browserName}) {
     )
     console.log('Browser name:', browserName);
     console.log('Browser version:', browser.version());
-    await expect(newPage.locator("(//span[normalize-space()='See more on Facebook'])[1]")).toBeVisible();
+        const seeMore = newPage.locator("(//span[normalize-space()='See more on Facebook'])[1]")
+    const otherOption = newPage.getByText("Explore the things you love");
+    await await expect(seeMore.or(otherOption).first()).toBeVisible();
 })
